@@ -15,6 +15,7 @@ router.get('/:id', (req, res) => {
 
 // POST a booking
 router.post('/', (req, res) => {
+    const {firstName, lastName, email, phoneNumber, occupation} = req.body
     res.json({msg: "Add a booking"})
 })
 
