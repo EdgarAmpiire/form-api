@@ -67,15 +67,19 @@ const deleteBooking = async (req, res) => {
 
 // UPDATE a booking
 const updateBooking = async (req, res) => {
-    const { id } = req.params
-    
-    if(!mongoose.Types.ObjectId.isValid(id)){
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(404).json({ error: "Booking doesn't exist." });
-    }
+  }
 
-    const booking = await Bookings.findOneAndUpdate({_id: id}, {...req.body})
+  const booking = await Bookings.findOneAndUpdate({ _id: id }, { ...req.body });
 
-    
-}
+  if (!booking) {
+    res.status(400).json({ error: "Booking doesn't exist." });
+  }
+
+  res.status(200).json(booking);
+};
 
 module.exports = { getBookings, getBooking, createBooking, deleteBooking };
