@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema
 
-const bookingScheme = new Schema({
+const bookingSchema = new Schema({
     firstName: {
         type: String,
         required: true,
@@ -26,4 +26,4 @@ const bookingScheme = new Schema({
 
 }, {timestamps: true})
 
-module.exports
+module.exports = mongoose.Schema('Bookings', bookingSchema)
