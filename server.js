@@ -1,31 +1,30 @@
-const express = require("express")
-require("dotenv").config()
-const bookingRoutes = require('./routes/booking')
-const mongoose = require('mongoose')
+const express = require("express");
+require("dotenv").config();
+const bookingRoutes = require("./routes/booking");
+const mongoose = require("mongoose");
 
 //express app
-const app = express()
+const app = express();
 
 // middleware
-app.use(express.json())
+app.use(express.json());
 app.use((req, res, next) => {
-    console.log(req.path, req.method)
-    next()
-})
-
+  console.log(req.path, req.method);
+  next();
+});
+  
 // routes
-app.use("/api/bookings", bookingRoutes)
+app.use("/api/bookings", bookingRoutes);
 
 // connect to db
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-// listening to request
-app.listen(process.env.PORT, () => {
-    console.log("listening to port:", process.env.PORT)
-})
-})
-.catch((error) => {
-    console.log(error)
-})
-
-
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    // listening to request
+    app.listen(process.env.PORT, () => {
+      console.log("Connected to DB \nlistening to port:", process.env.PORT);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
