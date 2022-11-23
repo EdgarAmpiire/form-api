@@ -1,3 +1,4 @@
+const { mongoose } = require("mongoose");
 const Bookings = require("../models/bookingsModel");
 
 // GET all bookings
@@ -14,14 +15,20 @@ const getBookings = async (req, res) => {
 
 // GET a single booking
 const getBooking = async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
+
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        res.status(404).json({error: "Booking doesn't exist."})
+
+    }
 
     const booking = await Bookings.findById(id)
 
     if(!booking) { 
-        res.status(404).json({error: "Booking doesn't exist."})
+        res.status(400).json({error: "Booking doesn't exist."})
     }
-
+ 
     res.status(200).json(booking)
 }
 
@@ -29,7 +36,7 @@ const getBooking = async (req, res) => {
 const createBooking = async (req, res) => {
   const { firstName, lastName, email, phoneNumber, occupation } = req.body;
 
-  //add doc to db
+  //add doc to db 
   try {
     const booking = await Bookings.create({
       firstName,
