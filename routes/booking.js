@@ -16,6 +16,14 @@ router.get('/:id', (req, res) => {
 // POST a booking
 router.post('/', (req, res) => {
     const {firstName, lastName, email, phoneNumber, occupation} = req.body
+
+    // add to db
+    try {
+        
+        
+    } catch (error) {
+        res.status(404).json({error: error.message})
+    }
     res.json({msg: "Add a booking"})
 })
 
