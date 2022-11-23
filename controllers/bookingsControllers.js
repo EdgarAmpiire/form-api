@@ -60,6 +60,12 @@ const deleteBooking = async (req, res) => {
     }
 
     const booking = await Bookings.findOneAndDelete({_id: id})
+
+    if(!booking) {
+        res.status(400).json({error: "Booking doesn't exist."})
+    }
+
+    res.status(200).json(booking)
 }
 
 
