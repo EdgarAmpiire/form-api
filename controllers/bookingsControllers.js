@@ -51,5 +51,16 @@ const createBooking = async (req, res) => {
   }
 };
 
+// DELETE a booking
+const deleteBooking = async (req, res) => {
+    const { id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        res.status(404).json({error: "Booking doesn't exist."})
+    }
+
+    const booking = await Bookings.findOneAndDelete({_id: id})
+}
+
 
 module.exports = {getBookings, getBooking, createBooking}
