@@ -1,5 +1,5 @@
 const express = require("express");
-const { createBooking, getBookings } = require("../controllers/bookingsControllers");
+const { createBooking, getBookings, getBooking } = require("../controllers/bookingsControllers");
 const Bookings = require("../models/bookingsModel");
 
 const router = express.Router();
@@ -8,9 +8,7 @@ const router = express.Router();
 router.get("/", getBookings);
 
 // GET a single booking
-router.get("/:id", (req, res) => {
-  res.json({ msg: "Get a single booking" });
-});
+router.get("/:id", getBooking);
 
 // POST a booking
 router.post("/", createBooking);
