@@ -16,9 +16,9 @@ const getBookings = async (req, res) => {
 const getBooking = async (req, res) => {
     const {id} = req.params
 
-    const booking = await Bookings.findById({id})
+    const booking = await Bookings.findById(id)
 
-    if(!booking) {
+    if(!booking) { 
         res.status(404).json({error: "Booking doesn't exist."})
     }
 

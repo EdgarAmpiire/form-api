@@ -20,7 +20,7 @@ router.delete("/:id", (req, res) => {
 
 // UPDATE a booking
 router.patch("/:id", (req, res) => {
-  res.json({ msg: "Update a booking" });
+  res.json({ msg: "Update a booking" }); 
 });
 
 module.exports = router;
