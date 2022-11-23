@@ -1,13 +1,11 @@
 const express = require("express");
-const { createBooking } = require("../controllers/bookingsControllers");
+const { createBooking, getBookings } = require("../controllers/bookingsControllers");
 const Bookings = require("../models/bookingsModel");
 
 const router = express.Router();
 
 // GET all bookings
-router.get("/", (req, res) => {
-  res.json({ msg: "Get all bookings" });
-});
+router.get("/", getBookings);
 
 // GET a single booking
 router.get("/:id", (req, res) => {

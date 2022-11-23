@@ -28,4 +28,4 @@ const createBooking = async (req, res) => {
 };
 
 
-module.exports = {createBooking}
+module.exports = {getBookings, createBooking}
