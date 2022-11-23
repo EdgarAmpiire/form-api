@@ -17,6 +17,13 @@ app.use((req, res, next) => {
 app.use("/api/bookings", bookingRoutes)
 
 // connect to db
+mongoose.connect(process.env.MONGO_URI)
+.then({
+
+})
+.catch((error) => {
+    console.log(error)
+})
 
 
 // listening to request
