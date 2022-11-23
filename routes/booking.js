@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     res.status(200).json(booking);
   } catch (error) {
     res.status(400).json({ error: error.message });
-  }
+  } 
 });
  
 // DELETE a booking
