@@ -1,6 +1,7 @@
 const express = require("express")
 require("dotenv").config()
 const bookingRoutes = require('./routes/booking')
+const mongoose = require('mongoose')
 
 //express app
 const app = express()
@@ -14,6 +15,9 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/api/bookings", bookingRoutes)
+
+// connect to db
+
 
 // listening to request
 app.listen(process.env.PORT, () => {
