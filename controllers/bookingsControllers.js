@@ -73,6 +73,8 @@ const updateBooking = async (req, res) => {
     res.status(404).json({ error: "Booking doesn't exist." });
     }
 
+    const booking = await Bookings.findOneAndUpdate({_id: id}, {...req.body})
+
     
 }
 
