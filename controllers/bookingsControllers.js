@@ -1,5 +1,13 @@
 const Bookings = require("../models/bookingsModel");
 
+// GET all bookings
+const getBookings = async (req, res) => {
+    const bookings = await Bookings.find().sort({createdAt: -1})
+
+    res.status(200).json(bookings)
+
+}
+
 // POST a booking
 const createBooking = async (req, res) => {
   const { firstName, lastName, email, phoneNumber, occupation } = req.body;
