@@ -1,4 +1,5 @@
 const express = require('express')
+const Bookings = require('../models/bookingsModel')
 
 const router = express.Router()
 
