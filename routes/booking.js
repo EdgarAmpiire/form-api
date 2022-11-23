@@ -1,5 +1,5 @@
 const express = require("express");
-const { createBooking, getBookings, getBooking } = require("../controllers/bookingsControllers");
+const { createBooking, getBookings, getBooking, deleteBooking } = require("../controllers/bookingsControllers");
 const Bookings = require("../models/bookingsModel");
 
 const router = express.Router();
@@ -14,9 +14,7 @@ router.get("/:id", getBooking);
 router.post("/", createBooking);
  
 // DELETE a booking
-router.delete("/:id", (req, res) => {
-  res.json({ msg: "Delete a booking" });
-});
+router.delete("/:id", deleteBooking);
 
 // UPDATE a booking
 router.patch("/:id", (req, res) => {

@@ -69,4 +69,4 @@ const deleteBooking = async (req, res) => {
 }
 
 
-module.exports = {getBookings, getBooking, createBooking}
+module.exports = {getBookings, getBooking, createBooking, deleteBooking}
