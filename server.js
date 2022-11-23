@@ -1,5 +1,6 @@
 const express = require("express")
 require("dotenv").config()
+const bookingRoutes = require('./routes/booking')
 
 //express app
 const app = express()
@@ -11,9 +12,7 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.get("/", (req, res) => {
-    res.json({msg: "Welcome to the app!"})
-})
+app.use("/", bookingRoutes)
 
 // listening to request
 app.listen(process.env.PORT, () => {
