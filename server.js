@@ -18,15 +18,14 @@ app.use("/api/bookings", bookingRoutes)
 
 // connect to db
 mongoose.connect(process.env.MONGO_URI)
-.then({
-
+.then(() => {
+// listening to request
+app.listen(process.env.PORT, () => {
+    console.log("listening to port:", process.env.PORT)
+})
 })
 .catch((error) => {
     console.log(error)
 })
 
 
-// listening to request
-app.listen(process.env.PORT, () => {
-    console.log("listening to port:", process.env.PORT)
-})
