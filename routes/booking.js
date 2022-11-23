@@ -1,4 +1,5 @@
 const express = require("express");
+const { createBooking } = require("../controllers/bookingsControllers");
 const Bookings = require("../models/bookingsModel");
 
 const router = express.Router();
@@ -14,23 +15,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST a booking
-router.post("/", async (req, res) => {
-  const { firstName, lastName, email, phoneNumber, occupation } = req.body;
-
-  // add to db
-  try {
-    const booking = await Bookings.create({
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      occupation,
-    });
-    res.status(200).json(booking);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  } 
-});
+router.post("/", createBooking);
  
 // DELETE a booking
 router.delete("/:id", (req, res) => {
