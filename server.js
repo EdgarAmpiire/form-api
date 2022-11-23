@@ -16,6 +16,6 @@ app.get("/", (req, res) => {
 })
 
 // listening to request
-app.listen(4000, () => {
-    console.log("listening to port 4000")
+app.listen(process.env.PORT, () => {
+    console.log("listening to port:", process.env.PORT)
 })
