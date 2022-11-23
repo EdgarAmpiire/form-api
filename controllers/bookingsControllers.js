@@ -82,4 +82,4 @@ const updateBooking = async (req, res) => {
   res.status(200).json(booking);
 };
 
-module.exports = { getBookings, getBooking, createBooking, deleteBooking };
+module.exports = { getBookings, getBooking, createBooking, deleteBooking, updateBooking };
