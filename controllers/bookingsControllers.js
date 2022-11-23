@@ -3,40 +3,37 @@ const Bookings = require("../models/bookingsModel");
 
 // GET all bookings
 const getBookings = async (req, res) => {
-    const bookings = await Bookings.find().sort({createdAt: -1})
+  const bookings = await Bookings.find().sort({ createdAt: -1 });
 
-    if(!bookings.length === 0) {
-        res.status(404).json({error: "There are no bookings yet."})
-    }
+  if (!bookings.length === 0) {
+    res.status(404).json({ error: "There are no bookings yet." });
+  }
 
-    res.status(200).json(bookings)
-
-}
+  res.status(200).json(bookings);
+};
 
 // GET a single booking
 const getBooking = async (req, res) => {
-    const { id } = req.params
+  const { id } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ error: "Booking doesn't exist." });
+  }
 
-    if(!mongoose.Types.ObjectId.isValid(id)){
-        res.status(404).json({error: "Booking doesn't exist."})
+  const booking = await Bookings.findById(id);
 
-    }
+  if (!booking) {
+    res.status(400).json({ error: "Booking doesn't exist." });
+  }
 
-    const booking = await Bookings.findById(id)
-
-    if(!booking) { 
-        res.status(400).json({error: "Booking doesn't exist."})
-    }
- 
-    res.status(200).json(booking)
-}
+  res.status(200).json(booking);
+};
 
 // POST a booking
 const createBooking = async (req, res) => {
   const { firstName, lastName, email, phoneNumber, occupation } = req.body;
 
-  //add doc to db 
+  //add doc to db
   try {
     const booking = await Bookings.create({
       firstName,
@@ -53,20 +50,30 @@ const createBooking = async (req, res) => {
 
 // DELETE a booking
 const deleteBooking = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    res.status(404).json({ error: "Booking doesn't exist." });
+  }
+
+  const booking = await Bookings.findOneAndDelete({ _id: id });
+
+  if (!booking) {
+    res.status(400).json({ error: "Booking doesn't exist." });
+  }
+
+  res.status(200).json(booking);
+};
+
+// UPDATE a booking
+const updateBooking = async (req, res) => {
     const { id } = req.params
-
+    
     if(!mongoose.Types.ObjectId.isValid(id)){
-        res.status(404).json({error: "Booking doesn't exist."})
+    res.status(404).json({ error: "Booking doesn't exist." });
     }
 
-    const booking = await Bookings.findOneAndDelete({_id: id})
-
-    if(!booking) {
-        res.status(400).json({error: "Booking doesn't exist."})
-    }
-
-    res.status(200).json(booking)
+    
 }
 
-
-module.exports = {getBookings, getBooking, createBooking, deleteBooking}
+module.exports = { getBookings, getBooking, createBooking, deleteBooking };
