@@ -13,7 +13,7 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use("/", bookingRoutes)
+app.use("/api/bookings", bookingRoutes)
 
 // listening to request
 app.listen(process.env.PORT, () => {
